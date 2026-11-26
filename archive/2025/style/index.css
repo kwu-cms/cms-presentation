@@ -1,0 +1,374 @@
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 3px solid #000;
+    padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1rem, 2vw, 2rem);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sticky-header.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.sticky-header-content {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.sticky-header-title {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+.sticky-header-theme {
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .sticky-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .sticky-header-theme {
+        text-align: left;
+        font-size: clamp(0.8rem, 1.8vw, 1rem);
+    }
+}
+
+/* sticky-headerの下辺に5クラスカラーストライプ */
+.sticky-header::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        to right,
+        #0066FF 0%, #0066FF 20%,
+        #00C840 20%, #00C840 40%,
+        #9B45F5 40%, #9B45F5 60%,
+        #FF1C3A 60%, #FF1C3A 80%,
+        #FF7A00 80%, #FF7A00 100%
+    );
+}
+
+/* theme-descriptionのpadding-bottomのみ上書き */
+.theme-description {
+    padding-bottom: calc(clamp(2rem, 4vh, 2.5rem) + 15px);
+}
+
+.theme-content-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.groups-container {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.group-item {
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 0;
+    box-shadow: 8px 8px 0 #000;
+    padding: clamp(1.5rem, 3vh, 2rem);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+}
+
+.group-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0 #000;
+}
+
+.group-header {
+    margin-top: clamp(0.75rem, 1.5vh, 1rem);
+    margin-bottom: clamp(0.5rem, 1vh, 0.75rem);
+}
+
+.group-label {
+    display: inline-block;
+    padding: clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.6rem, 1.2vw, 0.9rem);
+    border-radius: 0;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+    font-weight: 700;
+    background: #000;
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+
+.group-class-label {
+    display: inline-block;
+    padding: clamp(0.25rem, 0.5vh, 0.4rem) clamp(0.6rem, 1.2vw, 0.9rem);
+    border-radius: 0;
+    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.05em;
+    margin-right: clamp(0.5rem, 1vw, 0.75rem);
+    border: 2px solid #000;
+}
+
+/* クラスごとのラベル色（vivid） */
+.group-item.class-mizuno .group-class-label {
+    background: #0066FF;
+}
+
+.group-item.class-iguchi .group-class-label {
+    background: #00C840;
+    color: #000;
+}
+
+.group-item.class-takawo .group-class-label {
+    background: #9B45F5;
+}
+
+.group-item.class-yao .group-class-label {
+    background: #FF1C3A;
+}
+
+.group-item.class-yamashita .group-class-label {
+    background: #FF7A00;
+    color: #000;
+}
+
+.group-theme {
+    font-size: clamp(1.1rem, 2.8vh, 1.5rem);
+    font-weight: 700;
+    color: #000;
+    line-height: 1.5;
+    margin-bottom: auto;
+    flex-grow: 1;
+    margin-top: 0;
+}
+
+.group-materials-button {
+    padding: clamp(0.75rem, 1.5vh, 1rem) clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+    font-weight: 700;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+    background: #000;
+    border: 3px solid #000;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.05em;
+    box-shadow: 3px 3px 0 #000;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    margin-top: clamp(1rem, 2vh, 1.5rem);
+    position: relative;
+}
+
+.group-materials-button i {
+    margin-left: 0.4em;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.group-materials-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 6px 6px 0 #000;
+}
+
+.group-materials-button:active {
+    transform: translateY(0);
+    box-shadow: 1px 1px 0 #000;
+}
+
+/* クラスごとのカードシャドウ（neo-brutalist vivid） */
+.group-item.class-mizuno {
+    box-shadow: 8px 8px 0 #0066FF;
+}
+
+.group-item.class-mizuno:hover {
+    box-shadow: 8px 8px 0 #0066FF;
+}
+
+.group-item.class-iguchi {
+    box-shadow: 8px 8px 0 #00C840;
+}
+
+.group-item.class-iguchi:hover {
+    box-shadow: 8px 8px 0 #00C840;
+}
+
+.group-item.class-takawo {
+    box-shadow: 8px 8px 0 #9B45F5;
+}
+
+.group-item.class-takawo:hover {
+    box-shadow: 8px 8px 0 #9B45F5;
+}
+
+.group-item.class-yao {
+    box-shadow: 8px 8px 0 #FF1C3A;
+}
+
+.group-item.class-yao:hover {
+    box-shadow: 8px 8px 0 #FF1C3A;
+}
+
+.group-item.class-yamashita {
+    box-shadow: 8px 8px 0 #FF7A00;
+}
+
+.group-item.class-yamashita:hover {
+    box-shadow: 8px 8px 0 #FF7A00;
+}
+
+/* クラスごとのボタンシャドウ */
+.group-item.class-mizuno .group-materials-button {
+    box-shadow: 3px 3px 0 #0066FF;
+}
+
+.group-item.class-mizuno .group-materials-button:hover {
+    box-shadow: 6px 6px 0 #0066FF;
+}
+
+.group-item.class-iguchi .group-materials-button {
+    box-shadow: 3px 3px 0 #00C840;
+}
+
+.group-item.class-iguchi .group-materials-button:hover {
+    box-shadow: 6px 6px 0 #00C840;
+}
+
+.group-item.class-takawo .group-materials-button {
+    box-shadow: 3px 3px 0 #9B45F5;
+}
+
+.group-item.class-takawo .group-materials-button:hover {
+    box-shadow: 6px 6px 0 #9B45F5;
+}
+
+.group-item.class-yao .group-materials-button {
+    box-shadow: 3px 3px 0 #FF1C3A;
+}
+
+.group-item.class-yao .group-materials-button:hover {
+    box-shadow: 6px 6px 0 #FF1C3A;
+}
+
+.group-item.class-yamashita .group-materials-button {
+    box-shadow: 3px 3px 0 #FF7A00;
+}
+
+.group-item.class-yamashita .group-materials-button:hover {
+    box-shadow: 6px 6px 0 #FF7A00;
+}
+
+.group-youtube-container {
+    width: 100%;
+    margin-top: clamp(1rem, 2vh, 1.5rem);
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0 #000;
+}
+
+.group-youtube-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.group-image-container {
+    width: 100%;
+    margin-top: clamp(1rem, 2vh, 1.5rem);
+    margin-bottom: clamp(1rem, 2vh, 1.5rem);
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0 #000;
+    overflow: hidden;
+}
+
+.group-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: opacity 0.1s ease;
+    cursor: pointer;
+}
+
+.group-image-container {
+    position: relative;
+}
+
+.group-image-container:hover .group-image {
+    opacity: 0.9;
+}
+
+.list-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 clamp(1rem, 2vw, 2rem);
+    padding-bottom: 2rem;
+}
+
+/* スクロール出現アニメーション */
+.reveal-hidden {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .groups-container {
+        grid-template-columns: 1fr;
+    }
+
+    .group-item {
+        padding: clamp(1rem, 2vh, 1.5rem);
+    }
+
+    .group-theme {
+        font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+    }
+}
